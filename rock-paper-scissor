@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>Game_page</title>
+    </head>
+    <body>
+        <p>--welcome to Rock, Paper, scissor game--</p>
+        <p>scissor -> s</p>
+        <p>Rock    -> r</p>
+        <p>paper   -> p</p>
+        <script src="practJs.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+let game = ['r','p','s']
+alert("Hlo Achiever...Lets start the game!!")
+let user = prompt("Enter value(r,p,s)").toLowerCase()
+let pc = Math.floor(Math.random() * 3);
+function check(user,pc,game,repeat){
+    if(game.includes(user)){
+        document.write("user entered value "+user.toUpperCase())
+        document.write("<br>")
+        document.write("pc entered value "+game[pc].toUpperCase())
+        document.write("<br>")
+        if(user == game[pc]){
+            document.write("MATCH HAS TIED!!<br>")
+        }
+        else if((user=='r' && game[pc]=='p') || (user=='s' && game[pc]=='p') || (user=='s' && game[pc]=='r')){
+            document.write("USER HAS WON<br>")
+        }
+        else if((user=='p' && game[pc]=='r') || (user=='p' && game[pc]=='s') || (user=='r' && game[pc]=='s')){
+            document.write("PC HAS WON<br>")
+        }else{
+            document.write("MATCH WAS ABRUPTED<br>")
+       }
+    }
+    else{
+        alert("Entered Invalid Input")
+        let again = confirm("Do you want to enter again??")
+        if(again){
+            let user = prompt("Enter value(r,p,s)").toLowerCase()
+            check(user,pc,game)
+        }else{
+            document.write("Thank you...see you again\n")
+            repeat = false;
+            return repeat
+        }
+    }
+}
+let repeat = true
+let res = check(user,pc,game,repeat)
+while(repeat){
+    check(user,pc,game)
+    let wish = confirm("Do you want to play again??")
+    if(wish){
+        let user = prompt("Enter value(r,p,s)").toLowerCase()
+        let pc = Math.floor(Math.random() * 3);
+        check(user,pc,game)
+    }
+    else{
+        if(repeat == false || res == false)
+        document.write("Thank you for playing!!!...\n")
+    }
+}
